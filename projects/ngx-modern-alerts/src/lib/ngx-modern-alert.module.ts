@@ -12,4 +12,4 @@ import { NgxModernAlertService } from "./services/ngx-modern-alert.service";
    exports: [NgxModernAlertComponent],
    providers: [NgxModernAlertService],
 })
-export class NgxModernAlertsModule {}
+export class NgxModernAlertModule {}

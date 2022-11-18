@@ -18,10 +18,10 @@ npm i -S ngx-modern-alerts
 ### Show global alerts using the service
 
 ```ts
-import { NgxModernAlertsModule } from "./ngx-modern-alerts.module";
+import { NgxModernAlertModule } from "./ngx-modern-alerts.module";
 
 @NgModule({
-   imports: [BrowserAnimationsModule, NgxModernAlertsModule],
+   imports: [BrowserAnimationsModule, NgxModernAlertModule],
 })
 export class AppModule {}
 ```
