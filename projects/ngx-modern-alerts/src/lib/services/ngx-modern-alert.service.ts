@@ -8,7 +8,9 @@ import { NgxModernAlert, NgxModernAlertLevel, NgxModernAlertOverlayType } from '
 
 type HtmlString = string;
 
-@Injectable()
+@Injectable({
+   providedIn: 'root'
+})
 export class NgxModernAlertService implements OnDestroy {
    private subscriptions: Subscription[] = [];
    public alerts: NgxModernAlert[] = [];

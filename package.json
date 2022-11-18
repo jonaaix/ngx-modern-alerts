@@ -8,7 +8,7 @@
     "build": "ng build",
     "build:demo": "ng build ngx-modern-alerts-demo",
     "build:lib": "ng build ngx-modern-alerts",
-    "publish": "npm run build:lib && cd dist/ngx-modern-alerts && npm publish",
+    "publish": "npm run build:demo && npm run build:lib && cd dist/ngx-modern-alerts && npm publish",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint"
