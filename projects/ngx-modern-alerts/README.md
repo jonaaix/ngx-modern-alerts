@@ -18,15 +18,6 @@ npm i -S ngx-modern-alerts
 ### Show global alerts using the service
 
 ```ts
-import { NgxModernAlertModule } from "./ngx-modern-alerts.module";
-
-@NgModule({
-   imports: [BrowserAnimationsModule, NgxModernAlertModule],
-})
-export class AppModule {}
-```
-
-```ts
 import { NgxModernAlert } from "ngx-modern-alerts";
 import { timeout } from "rxjs";
 
@@ -76,6 +67,15 @@ export class AppComponent {
 
 ### Using the component
 You can also render the component in classic form in your template:
+
+```ts
+import { NgxModernAlertModule } from "./ngx-modern-alerts.module";
+
+@NgModule({
+   imports: [BrowserAnimationsModule, NgxModernAlertModule],
+})
+export class AppModule {}
+```
 
 ```html
 <ngx-modern-alert [text]="text" level="danger" (dismiss)="onDismissed()"></ngx-modern-alert>
