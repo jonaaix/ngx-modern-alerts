@@ -6,6 +6,8 @@
 
 ### Advanced modern customizable alerts for Angular
 
+## !! Warning: Work in Progress - API might change !!
+
 ```sh
 # Install the Angular component
 npm i -S ngx-modern-alerts
