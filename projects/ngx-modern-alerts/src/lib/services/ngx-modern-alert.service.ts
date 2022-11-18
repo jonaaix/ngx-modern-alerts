@@ -135,56 +135,56 @@ export class NgxModernAlertService implements OnDestroy {
    /**
     * Alert Info
     */
-   public alertInfo(message: string | HtmlString): void {
+   public info(message: string | HtmlString): void {
       this.createAlert(message, 'info', 'floating');
    }
 
    /**
     * Alert Banner Info
     */
-   public alertBannerInfo(message: string | HtmlString): void {
+   public infoBanner(message: string | HtmlString): void {
       this.createAlert(message, 'info', 'banner');
    }
 
    /**
     * Alert Success
     */
-   public alertSuccess(message: string | HtmlString): void {
+   public success(message: string | HtmlString): void {
       this.createAlert(message, 'success', 'floating');
    }
 
    /**
     * Alert Banner Success
     */
-   public alertBannerSuccess(message: string | HtmlString): void {
+   public successBanner(message: string | HtmlString): void {
       this.createAlert(message, 'success', 'banner');
    }
 
    /**
     * Alert Warning
     */
-   public alertWarning(message: string | HtmlString): void {
+   public warning(message: string | HtmlString): void {
       this.createAlert(message, 'warning', 'floating');
    }
 
    /**
     * Alert Banner Warning
     */
-   public alertBannerWarning(message: string | HtmlString): void {
+   public warningBanner(message: string | HtmlString): void {
       this.createAlert(message, 'warning', 'banner');
    }
 
    /**
     * Alert Danger
     */
-   public alertDanger(message: string | HtmlString): void {
+   public danger(message: string | HtmlString): void {
       this.createAlert(message, 'danger', 'floating');
    }
 
    /**
     * Alert Banner Danger
     */
-   public alertBannerDanger(message: string | HtmlString): void {
+   public dangerBanner(message: string | HtmlString): void {
       this.createAlert(message, 'danger', 'banner');
    }
 }

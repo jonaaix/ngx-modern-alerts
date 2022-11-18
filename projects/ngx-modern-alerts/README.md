@@ -37,20 +37,20 @@ export class AppComponent {
     * Show Floating Alerts
     */
    public showFloatingAlerts(): void {
-      this.alertService.alertInfo('Information!');
-      this.alertService.alertSuccess('Success!');
-      this.alertService.alertWarning('Warning!');
-      this.alertService.alertDanger('Danger!');
+      this.alertService.info('Information!');
+      this.alertService.success('Success!');
+      this.alertService.warning('Warning!');
+      this.alertService.danger('Danger!');
    }
 
    /**
     * Show Banner Alerts
     */
    public showBannerAlerts(): void {
-      this.alertService.alertBannerInfo('Information!');
-      this.alertService.alertBannerSuccess('Success!');
-      this.alertService.alertBannerWarning('Warning!');
-      this.alertService.alertBannerDanger('Danger!');
+      this.alertService.infoBanner('Information!');
+      this.alertService.successBanner('Success!');
+      this.alertService.warningBanner('Warning!');
+      this.alertService.dangerBanner('Danger!');
    }
 
    /**

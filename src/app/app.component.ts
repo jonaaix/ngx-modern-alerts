@@ -20,20 +20,20 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
         Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.`;
 
-   constructor(private modernAlertService: NgxModernAlertService) {}
+   constructor(private alertService: NgxModernAlertService) {}
 
    /**
     * Add Dummy Alert
     */
    public addBannerAlert(): void {
-      this.modernAlertService.alertBannerInfo(this.text);
+      this.alertService.infoBanner(this.text);
    }
 
    /**
     * Add Floating Alert
     */
    public addFloatingAlert(): void {
-      this.modernAlertService.alertInfo(this.text);
+      this.alertService.info(this.text);
    }
 
    public onDismissed(): void {
