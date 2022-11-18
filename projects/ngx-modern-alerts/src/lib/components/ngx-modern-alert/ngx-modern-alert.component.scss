@@ -19,6 +19,8 @@
    font-size: 15px;
    transition: all 4s;
 
+
+
    &-container {
       display: flex;
       align-items: center;
@@ -55,6 +57,10 @@
       flex-grow: 1;
       padding: 0 0 0 8px;
 
+      @media (max-height: 1300px) {
+         align-self: center;
+      }
+
       &.extra-padding {
          padding: 0 18px 0 8px;
       }
@@ -65,13 +71,14 @@
 
    &-close-button {
       position: absolute;
-      right: 0px;
-      top: 0px;
-      width: 20px;
-      height: 20px;
+      right: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
       border-radius: 100%;
-      padding: 8px;
+      padding: 6px;
       cursor: pointer;
+      box-sizing: border-box;
 
       svg {
          fill: rgb(128, 128, 128);
