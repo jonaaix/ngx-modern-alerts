@@ -31,26 +31,26 @@ import { NgxModernAlert } from "ngx-modern-alerts";
 import { timeout } from "rxjs";
 
 export class AppComponent {
-   constructor(private modernAlertService: NgxModernAlertService) {}
+   constructor(private alertService: NgxModernAlertService) {}
 
    /**
     * Show Floating Alerts
     */
    public showFloatingAlerts(): void {
-      this.modernAlertService.alertInfo('Information!');
-      this.modernAlertService.alertSuccess('Success!');
-      this.modernAlertService.alertWarning('Warning!');
-      this.modernAlertService.alertDanger('Danger!');
+      this.alertService.alertInfo('Information!');
+      this.alertService.alertSuccess('Success!');
+      this.alertService.alertWarning('Warning!');
+      this.alertService.alertDanger('Danger!');
    }
 
    /**
     * Show Banner Alerts
     */
    public showBannerAlerts(): void {
-      this.modernAlertService.alertBannerInfo('Information!');
-      this.modernAlertService.alertBannerSuccess('Success!');
-      this.modernAlertService.alertBannerWarning('Warning!');
-      this.modernAlertService.alertBannerDanger('Danger!');
+      this.alertService.alertBannerInfo('Information!');
+      this.alertService.alertBannerSuccess('Success!');
+      this.alertService.alertBannerWarning('Warning!');
+      this.alertService.alertBannerDanger('Danger!');
    }
 
    /**
@@ -64,10 +64,10 @@ export class AppComponent {
       alert.validUntil = moment().add(10, 'seconds').toDate();
       alert.overlayType = 'floating';
 
-      this.modernAlertService.showAlert(alert);
+      this.alertService.showAlert(alert);
 
       timeout(5000).subscribe(() => {
-         this.modernAlertService.dismissAlert(alert);
+         this.alertService.dismissAlert(alert);
       });
    }
 
