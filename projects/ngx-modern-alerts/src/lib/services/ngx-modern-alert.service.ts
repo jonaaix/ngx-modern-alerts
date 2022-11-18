@@ -1,14 +1,16 @@
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentRef, Injectable } from '@angular/core';
+import { ComponentRef, Injectable, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { NgxModernAlertLayerComponent } from '../components/ngx-modern-alert-layer/ngx-modern-alert-layer.component';
-import { NgxModernAlert, NgxModernAlertOverlayType, NgxModernAlertLevel } from '../core/ngx-modern-alert';
+import { NgxModernAlert, NgxModernAlertLevel, NgxModernAlertOverlayType } from '../core/ngx-modern-alert';
 
 type HtmlString = string;
 
 @Injectable()
-export class NgxModernAlertService {
+export class NgxModernAlertService implements OnDestroy {
+   private subscriptions: Subscription[] = [];
    public alerts: NgxModernAlert[] = [];
    public displayAlerts: NgxModernAlert[] = [];
 
@@ -33,6 +35,10 @@ export class NgxModernAlertService {
 
    constructor(private overlay: Overlay, private domSanitizer: DomSanitizer) {
       this.init();
+   }
+
+   ngOnDestroy(): void {
+      this.subscriptions.forEach((s) => s.unsubscribe());
    }
 
    /**
@@ -68,6 +74,12 @@ export class NgxModernAlertService {
             this.cdkOverlayRef.overlayElement.style.bottom = this.yOffset;
             break;
       }
+
+      this.subscriptions.push(
+         this.alertLayerComponentRef.instance.dismissAlert$.subscribe((alert) => {
+            this.dismissAlert(alert);
+         })
+      );
    }
 
    /**

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 import { NgxModernAlert } from '../../core/ngx-modern-alert';
+import { Subject } from "rxjs";
 
 @Component({
    selector: 'ngx-modern-alert-layer',
@@ -13,6 +14,9 @@ export class NgxModernAlertLayerComponent {
    public bannerAlerts: NgxModernAlert[] = [];
    public floatingAlerts: NgxModernAlert[] = [];
 
+   // Ivy Hack
+   public dismissAlert$ = new Subject<NgxModernAlert>();
+
    constructor(public cdRef: ChangeDetectorRef) {}
 
    /**
@@ -22,5 +26,12 @@ export class NgxModernAlertLayerComponent {
       this.bannerAlerts = alerts.filter((a) => a.overlayType === 'banner');
       this.floatingAlerts = alerts.filter((a) => a.overlayType === 'floating');
       this.cdRef.markForCheck();
+   }
+
+   /**
+    * Dismiss Alert
+    */
+   public dismissAlert(alert: NgxModernAlert): void {
+       this.dismissAlert$.next(alert)
    }
 }

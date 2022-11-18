@@ -16,9 +16,10 @@ npm i -S ngx-modern-alerts
 ### Show global alerts using the service
 
 ```ts
+import { NgxModernAlertsModule } from "./ngx-modern-alerts.module";
+
 @NgModule({
-   imports: [BrowserAnimationsModule],
-   providers: [NgxModernAlertService],
+   imports: [BrowserAnimationsModule, NgxModernAlertsModule],
 })
 export class AppModule {}
 ```
@@ -28,8 +29,7 @@ import { NgxModernAlert } from "ngx-modern-alerts";
 import { timeout } from "rxjs";
 
 export class AppComponent {
-   constructor(private modernAlertService: NgxModernAlertService) {
-   }
+   constructor(private modernAlertService: NgxModernAlertService) {}
 
    /**
     * Show Floating Alerts
@@ -74,12 +74,6 @@ export class AppComponent {
 
 ### Using the component
 You can also render the component in classic form in your template:
-```ts
-@NgModule({
-   imports: [NgxModernAlertsModule],
-})
-export class AppModule {}
-```
 
 ```html
 <ngx-modern-alert [text]="text" level="danger" (dismiss)="onDismissed()"></ngx-modern-alert>

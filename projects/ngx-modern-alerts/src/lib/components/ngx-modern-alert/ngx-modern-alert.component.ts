@@ -1,18 +1,20 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import {
    ChangeDetectionStrategy,
-   Component, ElementRef, EventEmitter,
+   Component,
+   ElementRef,
+   EventEmitter,
    HostBinding,
    Input,
    OnChanges,
-   OnInit, Output,
+   OnInit,
+   Output,
    SimpleChanges,
-   ViewEncapsulation
-} from "@angular/core";
+   ViewEncapsulation,
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgxModernAlert, NgxModernAlertLevel, NgxModernAlertOverlayType } from "../../core/ngx-modern-alert";
+import { NgxModernAlert, NgxModernAlertLevel, NgxModernAlertOverlayType } from '../../core/ngx-modern-alert';
 import { NgxModernAlertIcons } from '../../core/ngx-modern-alert-icons';
-import { NgxModernAlertService } from '../../services/ngx-modern-alert.service';
 
 @Component({
    selector: 'ngx-modern-alert',
@@ -71,7 +73,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges {
       return this.alert?.overlayType;
    }
 
-   constructor(private modernAlertService: NgxModernAlertService, private domSanitizer: DomSanitizer, private elementRef: ElementRef) {}
+   constructor(private domSanitizer: DomSanitizer, private elementRef: ElementRef) {}
 
    /**
     * TODO: dismissible, deletable, readable, notifyable, levelable
@@ -99,12 +101,6 @@ export class NgxModernAlertComponent implements OnInit, OnChanges {
     * Dismiss
     */
    public onDismiss(): void {
-      if (this.alert) {
-         if (this.elementRef.nativeElement.getAttribute('ngx-modern-alert-global') === 'true') {
-            this.modernAlertService.dismissAlert(this.alert as NgxModernAlert);
-         } else {
-            this.dismiss.emit(true);
-         }
-      }
+      this.dismiss.emit(true);
    }
 }
