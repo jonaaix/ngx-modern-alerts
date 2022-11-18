@@ -1,0 +1,27 @@
+<div *ngIf="alert" class="ngx-modern-alert-container ngx-modern-alert-level-{{ level || alert.level }}">
+   <div class="ngx-modern-alert-content">
+      <div class="ngx-modern-alert-icon-container"
+           *ngIf="!hideIcon && (level || alert.level)" [class.extra-padding]="level || alert.level">
+         <div class="ngx-modern-alert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" *ngIf="iconPath; else svgIcon">
+               <path [attr.d]="iconPath" />
+            </svg>
+
+            <ng-template #svgIcon>
+               <div [outerHTML]="alert.svgIcon"></div>
+            </ng-template>
+         </div>
+      </div>
+
+      <div class="ngx-modern-alert-message-container" [class.extra-padding]="showCloseBtn">
+         <div class="ngx-modern-alert-message" [outerHTML]="alert.message"></div>
+      </div>
+
+      <div class="ngx-modern-alert-close-button" *ngIf="showCloseBtn" (click)="onDismiss()">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+               d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+         </svg>
+      </div>
+   </div>
+</div>

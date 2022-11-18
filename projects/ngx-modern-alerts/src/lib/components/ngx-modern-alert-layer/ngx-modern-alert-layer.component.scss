@@ -1,0 +1,37 @@
+.ngx-modern-alert {
+   &-layer-panel {
+      position: absolute;
+      width: 100%;
+      pointer-events: none;
+   }
+
+   &-banner-alerts {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      max-height: 100vh;
+      width: 100%;
+      overflow: auto;
+      box-sizing: border-box;
+      pointer-events: all;
+      max-width: 1000px;
+      margin: 0 auto;
+      z-index: 999;
+   }
+
+   &-floating-alerts {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 16px;
+      pointer-events: all;
+      max-height: 100vh;
+      max-width: 450px;
+      width: 100%;
+      overflow: auto;
+      box-sizing: border-box;
+      float: right;
+      z-index: 998;
+   }
+}

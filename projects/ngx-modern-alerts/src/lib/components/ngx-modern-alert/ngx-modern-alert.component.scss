@@ -1,0 +1,129 @@
+.ngx-modern-alert {
+   --ngx-modern-alert-bg-default: rgb(255 255 255 / 80%);
+   --ngx-modern-alert-text-default: rgb(30 30 30);
+
+   --ngx-modern-alert-info-color-icon: #2196f3;
+   --ngx-modern-alert-info-color-text: hsl(220, 50%, 35%);
+
+   --ngx-modern-alert-success-color-icon: #4caf50;
+   --ngx-modern-alert-success-color-text: hsl(125, 50%, 35%);
+
+   --ngx-modern-alert-danger-color-icon: #f44336;
+   --ngx-modern-alert-danger-color-text: hsl(0, 50%, 35%);
+
+   --ngx-modern-alert-warning-color-icon: #ea9c00;
+   --ngx-modern-alert-warning-color-text: hsl(25, 50%, 35%);
+
+   display: block;
+   margin-bottom: 8px;
+   font-size: 15px;
+   transition: all 4s;
+
+   &-container {
+      display: flex;
+      align-items: center;
+      box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
+      backdrop-filter: blur(16px);
+      background-color: var(--ngx-modern-alert-bg-default);
+      border-radius: 9px;
+      box-sizing: border-box;
+   }
+
+   &-content {
+      flex-grow: 1;
+      display: flex;
+      padding: 12px;
+      color: var(--ngx-modern-alert-text-default);
+   }
+
+   &-icon-container {
+      padding: 0;
+
+      &.extra-padding {
+         padding: 0 8px 0 8px;
+      }
+   }
+   &-icon {
+      min-width: 32px;
+      min-height: 32px;
+      display: flex;
+      align-items: center;
+      border-radius: 100%;
+   }
+
+   &-message-container {
+      flex-grow: 1;
+      padding: 0 0 0 8px;
+
+      &.extra-padding {
+         padding: 0 18px 0 8px;
+      }
+   }
+
+   &-message {
+   }
+
+   &-close-button {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      padding: 8px;
+      cursor: pointer;
+
+      svg {
+         fill: rgb(128, 128, 128);
+      }
+
+      &:active {
+         opacity: 0.7;
+         background-color: rgb(100 100 100 / 20%);
+         transition: all 100ms ease-in;
+      }
+   }
+
+   &-level {
+      &-info {
+         border: 3px solid var(--ngx-modern-alert-info-color-icon);
+
+         .ngx-modern-alert-message-container {
+            color: var(--ngx-modern-alert-info-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-info-color-icon);
+         }
+      }
+      &-success {
+         border: 3px solid var(--ngx-modern-alert-success-color-icon);
+
+         .ngx-modern-alert-message-container {
+            color: var(--ngx-modern-alert-success-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-success-color-icon);
+         }
+      }
+      &-danger {
+         border: 3px solid var(--ngx-modern-alert-danger-color-icon);
+
+         .ngx-modern-alert-message-container {
+            color: var(--ngx-modern-alert-danger-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-danger-color-icon);
+         }
+      }
+      &-warning {
+         border: 3px solid var(--ngx-modern-alert-warning-color-icon);
+
+         .ngx-modern-alert-message-container {
+            color: var(--ngx-modern-alert-warning-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-warning-color-icon);
+         }
+      }
+   }
+}
