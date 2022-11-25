@@ -29,6 +29,7 @@
       background-color: var(--ngx-modern-alert-bg-default);
       border-radius: 9px;
       box-sizing: border-box;
+      pointer-events: all;
    }
 
    &-content {

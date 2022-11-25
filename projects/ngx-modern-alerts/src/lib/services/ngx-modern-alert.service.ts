@@ -9,7 +9,7 @@ import { NgxModernAlert, NgxModernAlertLevel, NgxModernAlertOverlayType } from '
 type HtmlString = string;
 
 @Injectable({
-   providedIn: 'root'
+   providedIn: 'root',
 })
 export class NgxModernAlertService implements OnDestroy {
    private subscriptions: Subscription[] = [];
@@ -31,13 +31,11 @@ export class NgxModernAlertService implements OnDestroy {
    public xOffset: string = '0';
    public yOffset: string = '0';
 
-   private cdkOverlayRef!: OverlayRef;
+   private cdkOverlayRef?: OverlayRef;
 
-   private alertLayerComponentRef!: ComponentRef<NgxModernAlertLayerComponent>;
+   private alertLayerComponentRef?: ComponentRef<NgxModernAlertLayerComponent>;
 
-   constructor(private overlay: Overlay, private domSanitizer: DomSanitizer) {
-      this.init();
-   }
+   constructor(private overlay: Overlay, private domSanitizer: DomSanitizer) {}
 
    ngOnDestroy(): void {
       this.subscriptions.forEach((s) => s.unsubscribe());
@@ -50,7 +48,7 @@ export class NgxModernAlertService implements OnDestroy {
     * TODO: download screenshot
     * TODO: custom Action
     */
-   private init(): void {
+   private createPortal(): void {
       this.cdkOverlayRef = this.overlay.create({
          panelClass: 'ngx-modern-alert-layer-panel',
       });
@@ -82,6 +80,17 @@ export class NgxModernAlertService implements OnDestroy {
             this.dismissAlert(alert);
          })
       );
+   }
+
+   /**
+    * Destroy Portal
+    */
+   private destroyPortal(): void {
+      this.alertLayerComponentRef?.destroy();
+      this.alertLayerComponentRef = void 0;
+
+      this.cdkOverlayRef!.detach();
+      this.cdkOverlayRef = void 0;
    }
 
    /**
@@ -121,7 +130,15 @@ export class NgxModernAlertService implements OnDestroy {
 
          return true;
       });
-      this.alertLayerComponentRef.instance.setDisplayAlerts(this.displayAlerts);
+
+      if (this.displayAlerts?.length) {
+         if (!this.alertLayerComponentRef) {
+            this.createPortal();
+         }
+         this.alertLayerComponentRef?.instance.setDisplayAlerts(this.displayAlerts);
+      } else {
+         this.destroyPortal();
+      }
    }
 
    /**
