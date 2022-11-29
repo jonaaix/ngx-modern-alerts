@@ -1,6 +1,6 @@
 {
    "name": "ngx-modern-alerts",
-   "version": "0.2.4",
+   "version": "0.2.6",
    "description": "Advanced modern customizable alerts for Angular",
    "author": "Jonas Gnioui <btxtiger@icloud.com>",
    "license": "MIT",
@@ -17,9 +17,12 @@
       "notifications"
    ],
    "peerDependencies": {
-      "@angular/common": "^14.1.0",
-      "@angular/core": "^14.1.0",
-      "@angular/animations": "^14.1.0"
+      "@angular/common": "10 - 100",
+      "@angular/core": "10 - 100",
+      "@angular/animations": "10 - 100",
+      "@angular/cdk": "10 - 100",
+      "@angular/platform-browser": "10 - 100",
+      "rxjs": "6 - 100"
    },
    "dependencies": {
       "tslib": "^2.3.0"
