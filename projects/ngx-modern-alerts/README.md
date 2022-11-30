@@ -80,6 +80,11 @@ export class AppModule {}
 ```html
 <ngx-modern-alert [text]="text" level="danger" (dismiss)="onDismissed()"></ngx-modern-alert>
 
+<ngx-modern-alert level="info">
+   <h3>Hello!</h3>
+   This is the information text!
+</ngx-modern-alert>
+
 // Hide icon
 <ngx-modern-alert [text]="text" level="info" [hideIcon]="true"></ngx-modern-alert>
 
