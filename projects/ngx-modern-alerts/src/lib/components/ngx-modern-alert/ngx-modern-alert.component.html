@@ -14,7 +14,7 @@
       </div>
 
       <div class="ngx-modern-alert-message-container" [class.extra-padding]="showCloseBtn">
-         <div class="ngx-modern-alert-message" [outerHTML]="alert.message"></div>
+         <div class="ngx-modern-alert-message" [outerHTML]="alert.message" *ngIf="alert.message"></div>
          <ng-content></ng-content>
       </div>
 

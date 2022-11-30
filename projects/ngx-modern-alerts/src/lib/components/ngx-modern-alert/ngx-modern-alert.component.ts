@@ -95,6 +95,12 @@ export class NgxModernAlertComponent implements OnInit, OnChanges {
             this.iconPath = NgxModernAlertIcons[this.level];
          }
       }
+      if (!this.text && !this.alert) {
+         this.alert = new NgxModernAlert();
+         if (this.level) {
+            this.iconPath = NgxModernAlertIcons[this.level];
+         }
+      }
    }
 
    /**
