@@ -15,6 +15,7 @@
 
       <div class="ngx-modern-alert-message-container" [class.extra-padding]="showCloseBtn">
          <div class="ngx-modern-alert-message" [outerHTML]="alert.message"></div>
+         <ng-content></ng-content>
       </div>
 
       <div class="ngx-modern-alert-close-button" *ngIf="showCloseBtn" (click)="onDismiss()">
