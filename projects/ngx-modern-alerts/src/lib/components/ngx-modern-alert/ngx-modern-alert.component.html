@@ -1,4 +1,4 @@
-<div *ngIf="alert" class="ngx-modern-alert-container ngx-modern-alert-level-{{ level || alert.level }}">
+<div *ngIf="alert" class="ngx-modern-alert-container ngx-modern-alert-level-{{ level || alert.level }}" [class.elevated]="elevated">
    <div class="ngx-modern-alert-content">
       <div class="ngx-modern-alert-icon-container"
            *ngIf="!hideIcon && (level || alert.level)" [class.extra-padding]="level || alert.level">

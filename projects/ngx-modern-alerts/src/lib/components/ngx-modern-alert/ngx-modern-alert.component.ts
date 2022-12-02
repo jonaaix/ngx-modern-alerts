@@ -58,6 +58,9 @@ export class NgxModernAlertComponent implements OnInit, OnChanges {
    public level?: NgxModernAlertLevel;
 
    @Input()
+   public elevated: boolean = false;
+
+   @Input()
    public showCloseBtn = false;
 
    @Input()

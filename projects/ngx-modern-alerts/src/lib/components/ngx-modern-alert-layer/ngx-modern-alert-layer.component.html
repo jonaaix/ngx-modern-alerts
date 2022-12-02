@@ -1,11 +1,11 @@
 <div class="ngx-modern-alert-banner-alerts">
    <ng-container *ngFor="let alert of bannerAlerts">
-      <ngx-modern-alert [alert]="alert" [showCloseBtn]="true" (dismiss)="dismissAlert(alert)"></ngx-modern-alert>
+      <ngx-modern-alert [alert]="alert" [showCloseBtn]="true" (dismiss)="dismissAlert(alert)" [elevated]="true"></ngx-modern-alert>
    </ng-container>
 </div>
 
 <div class="ngx-modern-alert-floating-alerts">
    <ng-container *ngFor="let alert of floatingAlerts">
-      <ngx-modern-alert [alert]="alert" [showCloseBtn]="true" (dismiss)="dismissAlert(alert)"></ngx-modern-alert>
+      <ngx-modern-alert [alert]="alert" [showCloseBtn]="true" (dismiss)="dismissAlert(alert)" [elevated]="true"></ngx-modern-alert>
    </ng-container>
 </div>
