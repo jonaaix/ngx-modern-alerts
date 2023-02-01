@@ -58,6 +58,7 @@
    &-message-container {
       flex-grow: 1;
       padding: 0 0 0 8px;
+      word-break: break-word;
 
       @media (max-height: 1300px) {
          align-self: center;
