@@ -13,7 +13,7 @@
 npm i -S ngx-modern-alerts
 ```
 
-### <a href="https://btxtiger.github.io/ngx-modern-alerts/" target="_blank">⇨ DEMO</a>
+### <a href="https://jonaaix.github.io/ngx-modern-alerts/" target="_blank">⇨ DEMO</a>
 
 ### Show global alerts using the service
 
