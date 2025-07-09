@@ -9,7 +9,7 @@ import { NgxModernAlertService } from "./services/ngx-modern-alert.service";
 @NgModule({
    declarations: [NgxModernAlertComponent, NgxModernAlertLayerComponent, NgxModernAlertHubComponent],
    imports: [CommonModule, OverlayModule],
-   exports: [NgxModernAlertComponent],
+   exports: [NgxModernAlertComponent, NgxModernAlertHubComponent],
    providers: [NgxModernAlertService],
 })
 export class NgxModernAlertModule {}

@@ -1,1 +1,33 @@
-<p>ngx-modern-alert-hub works!</p>
+<div class="ngx-modern-alert-hub-container">
+   <div class="ngx-modern-alert-hub-header">
+      <h3>Notifications</h3>
+      <div>
+         <button (click)="clearAll.emit()" class="ngx-modern-alert-hub-clear-all" title="Clear All">Clear All</button>
+         <button (click)="close.emit()" class="ngx-modern-alert-hub-close" title="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+         </button>
+      </div>
+   </div>
+
+   <div class="ngx-modern-alert-hub-body">
+      <div *ngIf="!alerts || alerts.length === 0" class="ngx-modern-alert-hub-empty">
+         No new notifications.
+      </div>
+      <div *ngFor="let alert of alerts" class="ngx-modern-alert-hub-item ngx-modern-alert-level-{{ alert.level }}" (click)="dismiss.emit(alert)">
+         <div class="ngx-modern-alert-hub-item-icon" *ngIf="getIconPath(alert) as iconPath">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+               <path [attr.d]="iconPath" />
+            </svg>
+         </div>
+         <div class="ngx-modern-alert-hub-item-content">
+            <div class="ngx-modern-alert-hub-item-message" [outerHTML]="alert.message"></div>
+            <div class="ngx-modern-alert-hub-item-date">{{ alert.notifiedAt | date:'shortTime' }}</div>
+         </div>
+         <div class="ngx-modern-alert-hub-item-actions">
+            <button (click)="copyMessage(alert, $event)" title="Copy Message" class="ngx-modern-alert-hub-item-action-btn">
+               <svg viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

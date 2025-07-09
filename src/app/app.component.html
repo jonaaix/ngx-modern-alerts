@@ -1,22 +1,13 @@
-<div style="max-width: 1200px; margin: 0 auto">
+<div class="main-container">
    <h1>ngx-modern-alerts</h1>
 
-
-   <button (click)="addBannerAlert()" class="btn">Add Banner Alert</button><br>
-   <button (click)="addFloatingAlert()" class="btn">Add Floating Alert</button>
-
-   <div>
-      <ngx-modern-alert text="Hi i am here" level="warning"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text" level="info"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text" level="info" [hideIcon]="true" [showCloseBtn]="true" (dismiss)="onDismissed()"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text" level="danger"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text2" level="warning"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text2" level="success"></ngx-modern-alert>
-      <ngx-modern-alert [text]="text2"></ngx-modern-alert>
-
-      <ngx-modern-alert level="info">
-         <h3>Hello!</h3>
-         This is the information text!
-      </ngx-modern-alert>
+   <div class="controls">
+      <button (click)="addBannerAlert()" class="btn">Add Banner Alert</button>
+      <button (click)="addFloatingAlert()" class="btn">Add Floating Alert</button>
+      <button (click)="addFloatingAlertWithTimeout()" class="btn">Add Alert with Timeout</button>
+      <button (click)="addAlertWithActions()" class="btn">Add Alert with Actions</button>
+      <button (click)="toggleHub()" class="btn">Toggle Notification Hub</button>
+      <button (click)="filterErrorsOnly()" class="btn">Filter: Errors Only</button>
+      <button (click)="clearFilter()" class="btn">Clear Filter</button>
    </div>
 </div>

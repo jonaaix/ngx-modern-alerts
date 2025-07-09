@@ -1,28 +1,52 @@
 <div *ngIf="alert" class="ngx-modern-alert-container ngx-modern-alert-level-{{ level || alert.level }}" [class.elevated]="elevated">
    <div class="ngx-modern-alert-content">
-      <div class="ngx-modern-alert-icon-container"
-           *ngIf="!hideIcon && (level || alert.level)" [class.extra-padding]="level || alert.level">
+      <div class="ngx-modern-alert-icon-container" *ngIf="!hideIcon && (level || alert.level)">
          <div class="ngx-modern-alert-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" *ngIf="iconPath; else svgIcon">
                <path [attr.d]="iconPath" />
             </svg>
-
             <ng-template #svgIcon>
                <div [outerHTML]="alert.svgIcon"></div>
             </ng-template>
          </div>
       </div>
 
-      <div class="ngx-modern-alert-message-container" [class.extra-padding]="showCloseBtn">
-         <div class="ngx-modern-alert-message" [outerHTML]="alert.message" *ngIf="alert.message"></div>
-         <ng-content></ng-content>
+      <div class="ngx-modern-alert-body">
+         <div class="ngx-modern-alert-message-container">
+            <div class="ngx-modern-alert-message" [outerHTML]="alert.message" *ngIf="alert.message"></div>
+            <ng-content></ng-content>
+         </div>
+         <div class="ngx-modern-alert-footer" *ngIf="alert.actions?.length || alert.feedbackText">
+            <div class="ngx-modern-alert-feedback" *ngIf="alert.feedbackText">{{ alert.feedbackText }}</div>
+            <div class="ngx-modern-alert-footer-spacer"></div>
+            <div class="ngx-modern-alert-actions" *ngIf="alert.actions?.length">
+               <button *ngFor="let action of alert.actions" (click)="executeAction(action, $event)" class="ngx-modern-alert-action-btn">
+                  {{ action.label }}
+               </button>
+            </div>
+         </div>
       </div>
 
-      <div class="ngx-modern-alert-close-button" *ngIf="showCloseBtn" (click)="onDismiss()">
-         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path
-               d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
-         </svg>
+      <div class="ngx-modern-alert-controls">
+         <div class="ngx-modern-alert-close-container" *ngIf="showCloseBtn || alert.timeout">
+            <div class="ngx-modern-alert-countdown" *ngIf="alert.timeout && !isHovered">
+               <svg viewBox="0 0 36 36" class="ngx-modern-alert-countdown-circle">
+                  <path class="ngx-modern-alert-countdown-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                  <path class="ngx-modern-alert-countdown-progress" pathLength="100" [style.stroke-dashoffset]="100 - countdownProgress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+               </svg>
+               <div class="ngx-modern-alert-countdown-number">{{ countdownDisplayNumber }}</div>
+            </div>
+
+            <div class="ngx-modern-alert-close-button" *ngIf="showCloseBtn && (!alert.timeout || isHovered)" (click)="onDismiss()">
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+               </svg>
+            </div>
+         </div>
+
+         <button *ngIf="showCopyButton" class="ngx-modern-alert-copy-btn" (click)="copyMessage($event)" title="Copy Message">
+            <svg viewBox="0 0 24 24"><path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" /></svg>
+         </button>
       </div>
    </div>
 </div>

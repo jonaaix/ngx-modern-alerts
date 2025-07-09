@@ -1,32 +1,29 @@
 .ngx-modern-alert {
    --ngx-modern-alert-bg-default: rgb(255 255 255 / 80%);
    --ngx-modern-alert-text-default: rgb(30 30 30);
-
    --ngx-modern-alert-info-color-icon: #2196f3;
    --ngx-modern-alert-info-color-text: hsl(220, 50%, 35%);
-
    --ngx-modern-alert-success-color-icon: #4caf50;
    --ngx-modern-alert-success-color-text: hsl(125, 50%, 35%);
-
    --ngx-modern-alert-danger-color-icon: #f44336;
    --ngx-modern-alert-danger-color-text: hsl(0, 50%, 35%);
-
    --ngx-modern-alert-warning-color-icon: #ea9c00;
    --ngx-modern-alert-warning-color-text: hsl(25, 50%, 35%);
 
    display: block;
    margin-bottom: 8px;
    font-size: 15px;
-   transition: all 4s;
 
    &-container {
       display: flex;
-      align-items: center;
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       background-color: var(--ngx-modern-alert-bg-default);
       border-radius: 9px;
       box-sizing: border-box;
       pointer-events: all;
+      position: relative;
+      border-left: 3px solid transparent;
 
       &.elevated {
          box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -34,115 +31,163 @@
    }
 
    &-content {
+      width: 100%;
       flex-grow: 1;
       display: flex;
       padding: 12px;
       color: var(--ngx-modern-alert-text-default);
+      align-items: flex-start;
    }
 
    &-icon-container {
-      padding: 0;
-
-      &.extra-padding {
-         padding: 0 8px 0 8px;
-      }
+      padding: 0 8px 0 0;
+      flex-shrink: 0;
+      margin-top: 2px;
    }
+
    &-icon {
-      min-width: 32px;
-      min-height: 32px;
+      width: 32px;
+      height: 32px;
       display: flex;
       align-items: center;
       border-radius: 100%;
    }
 
-   &-message-container {
+   &-body {
       flex-grow: 1;
-      padding: 0 0 0 8px;
-      word-break: break-word;
-
-      @media (max-height: 1300px) {
-         align-self: center;
-      }
-
-      &.extra-padding {
-         padding: 0 18px 0 8px;
-      }
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-         margin: 0;
-      }
+      display: flex;
+      flex-direction: column;
+      padding-right: 8px;
+      align-self: center;
    }
 
-   &-message {
+   &-message-container {
+      word-break: break-word;
+      h1, h2, h3, h4, h5, h6 { margin: 0; }
+   }
+
+   &-footer {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      width: 100%;
+   }
+
+   &-footer-spacer {
+      flex-grow: 1;
+   }
+
+   &-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: auto;
+      flex-shrink: 0;
+      align-self: flex-start;
+      height: 100%;
+   }
+
+   &-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+   }
+
+   &-action-btn {
+      background-color: rgba(100, 100, 100, 0.1);
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      margin-left: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      color: inherit;
+      &:hover { background-color: rgba(100, 100, 100, 0.2); }
+   }
+
+   &-copy-btn {
+      background: transparent;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 6px;
+
+      svg { fill: #808080; }
+      &:hover { background-color: rgba(100, 100, 100, 0.1); }
+   }
+
+   &-feedback {
+      font-size: 12px;
+      font-style: italic;
+      color: #666;
+   }
+
+   &-close-container {
+      position: relative;
+      width: 32px;
+      height: 32px;
    }
 
    &-close-button {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 100%;
-      padding: 6px;
-      cursor: pointer;
-      box-sizing: border-box;
+      width: 100%; height: 100%; border-radius: 100%; padding: 6px;
+      cursor: pointer; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
+      svg { fill: rgb(128, 128, 128); }
+      &:active { opacity: 0.7; background-color: rgb(100 100 100 / 20%); transition: all 100ms ease-in; }
+   }
 
-      svg {
-         fill: rgb(128, 128, 128);
+   &-countdown {
+      position: relative; width: 32px; height: 32px;
+      &-circle { width: 100%; height: 100%; transform: rotate(-90deg); }
+      &-bg { fill: none; stroke: #ddd; stroke-width: 3.8; }
+      &-progress {
+         fill: none;
+         stroke-width: 3.2;
+         stroke-linecap: round;
+         stroke-dasharray: 100;
+         stroke-dashoffset: 100;
+         transition: stroke-dashoffset 0.05s linear;
       }
-
-      &:active {
-         opacity: 0.7;
-         background-color: rgb(100 100 100 / 20%);
-         transition: all 100ms ease-in;
+      &-number {
+         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+         display: flex; align-items: center; justify-content: center; font-size: 12px;
       }
    }
 
    &-level {
       &-info {
-         border: 3px solid var(--ngx-modern-alert-info-color-icon);
-
-         .ngx-modern-alert-message-container {
-            color: var(--ngx-modern-alert-info-color-text);
-         }
-         .ngx-modern-alert-icon svg {
-            fill: var(--ngx-modern-alert-info-color-icon);
-         }
+         border-left-color: var(--ngx-modern-alert-info-color-icon);
+         .ngx-modern-alert-body { color: var(--ngx-modern-alert-info-color-text); }
+         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-info-color-icon); }
+         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-info-color-icon); }
+         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-info-color-text); }
       }
       &-success {
-         border: 3px solid var(--ngx-modern-alert-success-color-icon);
-
-         .ngx-modern-alert-message-container {
-            color: var(--ngx-modern-alert-success-color-text);
-         }
-         .ngx-modern-alert-icon svg {
-            fill: var(--ngx-modern-alert-success-color-icon);
-         }
+         border-left-color: var(--ngx-modern-alert-success-color-icon);
+         .ngx-modern-alert-body { color: var(--ngx-modern-alert-success-color-text); }
+         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-success-color-icon); }
+         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-success-color-icon); }
+         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-success-color-text); }
       }
       &-danger {
-         border: 3px solid var(--ngx-modern-alert-danger-color-icon);
-
-         .ngx-modern-alert-message-container {
-            color: var(--ngx-modern-alert-danger-color-text);
-         }
-         .ngx-modern-alert-icon svg {
-            fill: var(--ngx-modern-alert-danger-color-icon);
-         }
+         border-left-color: var(--ngx-modern-alert-danger-color-icon);
+         .ngx-modern-alert-body { color: var(--ngx-modern-alert-danger-color-text); }
+         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-danger-color-icon); }
+         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-danger-color-icon); }
+         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-danger-color-text); }
       }
       &-warning {
-         border: 3px solid var(--ngx-modern-alert-warning-color-icon);
-
-         .ngx-modern-alert-message-container {
-            color: var(--ngx-modern-alert-warning-color-text);
-         }
-         .ngx-modern-alert-icon svg {
-            fill: var(--ngx-modern-alert-warning-color-icon);
-         }
+         border-left-color: var(--ngx-modern-alert-warning-color-icon);
+         .ngx-modern-alert-body { color: var(--ngx-modern-alert-warning-color-text); }
+         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-warning-color-icon); }
+         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-warning-color-icon); }
+         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-warning-color-text); }
       }
    }
+}
+
+.ngx-modern-alerts-hub-backdrop {
+   background-color: rgba(0, 0, 0, 0.32);
 }

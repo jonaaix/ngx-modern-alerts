@@ -1,17 +1,29 @@
 import { SafeHtml } from '@angular/platform-browser';
+import { AlertActionTypeEnum, AlertLevelEnum, AlertOverlayTypeEnum } from './ngx-modern-alert-enums';
 
-export type NgxModernAlertLevel = 'info' | 'success' | 'warning' | 'danger';
-export type NgxModernAlertOverlayType = 'banner' | 'floating';
+export interface NgxModernAlertAction {
+   type: AlertActionTypeEnum;
+   label: string;
+   feedback?: string; // e.g., "Copied!"
+   onClick: (alert: NgxModernAlert) => void;
+}
 
 export class NgxModernAlert {
-   public id = Math.random().toString(36).slice(2, 7);
+   public id: string = Math.random().toString(36).slice(2, 9);
    public message?: string | SafeHtml;
    public notifiedAt: Date = new Date();
    public dismissedAt?: Date;
-   public level?: NgxModernAlertLevel;
+   public level?: AlertLevelEnum;
    public svgIcon?: string | SafeHtml;
+   public overlayType?: AlertOverlayTypeEnum;
    public validUntil?: Date;
-   public overlayType?: NgxModernAlertOverlayType;
+
+   // New Properties
+   public timeout?: number; // Duration in ms
+   public timeoutId?: number;
+   public actions?: NgxModernAlertAction[];
+   public feedbackText?: string | null = null;
+   public showCopyButton: boolean = false;
 
    constructor(message?: string | SafeHtml) {
       if (message) {

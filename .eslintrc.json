@@ -28,20 +28,7 @@
                      "constructors": "no-public"
                   }
                }
-            ],
-            "jsdoc/require-jsdoc": [
-               "error",
-               {
-                  "require": {
-                     "FunctionDeclaration": true
-                  },
-                  "checkConstructors": false,
-                  "contexts": [
-                     "MethodDefinition:not(MethodDefinition[key.name=\"ngOnInit\"]):not(MethodDefinition[key.name=\"ngOnDestroy\"]):not(MethodDefinition[key.name=\"ngOnChanges\"])"
-                  ]
-               }
-            ],
-            "jsdoc/require-description": "error"
+            ]
          }
       },
       {

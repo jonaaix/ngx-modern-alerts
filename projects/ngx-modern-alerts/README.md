@@ -4,132 +4,143 @@
 [![npm](https://img.shields.io/npm/dm/ngx-modern-alerts.svg)](https://www.npmjs.com/package/ngx-modern-alerts)
 [![npm](https://img.shields.io/librariesio/release/npm/ngx-modern-alerts)](https://www.npmjs.com/package/ngx-modern-alerts)
 
-### Advanced modern customizable alerts for Angular
+### Advanced, modern, and customizable alerts for Angular
 
-## !! Warning: Work in Progress - API might change !!
+This library provides a flexible system for displaying banner and floating alerts (notifications), complete with a notification hub, timeouts, custom actions, and more.
+
+### <a href="https://jonaaix.github.io/ngx-modern-alerts/" target="_blank">⇨ DEMO</a>
+
+---
+
+## Installation
 
 ```sh
 # Install the Angular component
 npm i -S ngx-modern-alerts
 ```
 
-### <a href="https://jonaaix.github.io/ngx-modern-alerts/" target="_blank">⇨ DEMO</a>
-
-### Show global alerts using the service
+Import the NgxModernAlertModule and BrowserAnimationsModule into your AppModule.
 
 ```ts
-import { NgxModernAlert } from "ngx-modern-alerts";
-import { timeout } from "rxjs";
-
-export class AppComponent {
-   constructor(private alertService: NgxModernAlertService) {}
-
-   /**
-    * Show Floating Alerts
-    */
-   public showFloatingAlerts(): void {
-      this.alertService.info('Information!');
-      this.alertService.success('Success!');
-      this.alertService.warning('Warning!');
-      this.alertService.danger('Danger!');
-   }
-
-   /**
-    * Show Banner Alerts
-    */
-   public showBannerAlerts(): void {
-      this.alertService.infoBanner('Information!');
-      this.alertService.successBanner('Success!');
-      this.alertService.warningBanner('Warning!');
-      this.alertService.dangerBanner('Danger!');
-   }
-
-   /**
-    * Show Custom Alert
-    */
-   public showCustomAlert(): void {
-      const alert = new NgxModernAlert();
-      alert.message = 'This is my message!';
-      alert.level = 'success';
-      alert.svgIcon = this.customSvgIcon;
-      alert.validUntil = moment().add(10, 'seconds').toDate();
-      alert.overlayType = 'floating';
-
-      this.alertService.showAlert(alert);
-
-      timeout(5000).subscribe(() => {
-         this.alertService.dismissAlert(alert);
-      });
-   }
-
-}
-```
-
-### Using the component
-You can also render the component in classic form in your template:
-
-```ts
-import { NgxModernAlertModule } from "./ngx-modern-alerts.module";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxModernAlertModule } from 'ngx-modern-alerts';
 
 @NgModule({
-   imports: [BrowserAnimationsModule, NgxModernAlertModule],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        NgxModernAlertModule
+    ],
+    // ...
 })
 export class AppModule {}
 ```
 
-```html
-<ngx-modern-alert [text]="text" level="danger" (dismiss)="onDismissed()"></ngx-modern-alert>
 
-<ngx-modern-alert level="info">
-   <h3>Hello!</h3>
-   This is the information text!
+## Features
+- Display banner or floating style alerts.
+- A Notification Hub to view a history of recent alerts.
+- Optional self-dismissing timeouts with a visual countdown.
+- Support for custom action buttons inside alerts.
+- Filter displayed alerts by level (e.g., show only errors).
+- Easy to use via the NgxModernAlertService.
+- Highly customizable via CSS variables.
+
+
+## Usage
+### 1. Using the Service
+Inject NgxModernAlertService to create alerts from anywhere in your application.
+
+```ts
+import { Component } from '@angular/core';
+import { NgxModernAlertService, NgxModernAlert, AlertLevelEnum, AlertActionTypeEnum } from 'ngx-modern-alerts';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <button (click)="showSuccess()">Show Success</button>
+    <button (click)="showErrorWithTimeout()">Show Error (5s)</button>
+    <button (click)="showAlertWithActions()">Show Alert with Actions</button>
+    <button (click)="toggleHub()">Toggle Notification Hub</button>
+  `
+})
+export class ExampleComponent {
+    constructor(private alertService: NgxModernAlertService) {}
+
+    showSuccess(): void {
+        this.alertService.success('Your changes have been saved successfully!');
+    }
+
+    showErrorWithTimeout(): void {
+        // This floating alert will disappear after 5 seconds
+        this.alertService.danger('Could not connect to the server.', 5000);
+    }
+
+    showAlertWithActions(): void {
+      const alert = new NgxModernAlert('A critical error occurred.');
+      alert.level = AlertLevelEnum.Danger;
+      alert.timeout = 15000;
+      alert.actions = [
+          {
+              type: AlertActionTypeEnum.Custom,
+              label: 'Report',
+              feedback: 'Report sent!',
+              onClick: (a) => console.log('Reporting alert:', a.id)
+          }
+      ];
+      this.alertService.showAlert(alert);
+    }
+
+    toggleHub(): void {
+        this.alertService.toggleHub();
+    }
+}
+```
+
+### 2. Using the Component
+You can also render the component directly in your templates for static messages.
+
+```html
+<ngx-modern-alert text="This is a static information message." level="info"></ngx-modern-alert>
+
+<ngx-modern-alert level="warning">
+   <h3>Attention!</h3>
+   <p>Please review your settings before proceeding.</p>
 </ngx-modern-alert>
 
-// Hide icon
-<ngx-modern-alert [text]="text" level="info" [hideIcon]="true"></ngx-modern-alert>
-
-// Use alert object
-<ngx-modern-alert [alert]="alert" [hideIcon]="true"></ngx-modern-alert>
+<ngx-modern-alert [text]="myText" level="danger" (dismiss)="onDismissed()"></ngx-modern-alert>
 ```
 
-### Styling
 
-You can modify these variables to adjust the style, and e.g. add compatibility to your dark mode.
+## Styling
+You can easily override the default colors to match your application's theme, including dark mode.
 
 ```scss
-.ngx-modern-alert {
-   --ngx-modern-alert-bg-default: rgb(255 255 255 / 80%);
-   --ngx-modern-alert-text-default: rgb(30 30 30);
+/* In your global styles.scss */
 
-   --ngx-modern-alert-info-color-icon: #2196f3;
-   --ngx-modern-alert-info-color-text: hsl(220, 50%, 35%);
-
-   --ngx-modern-alert-success-color-icon: #4caf50;
-   --ngx-modern-alert-success-color-text: hsl(125, 50%, 35%);
-
-   --ngx-modern-alert-danger-color-icon: #f44336;
-   --ngx-modern-alert-danger-color-text: hsl(0, 50%, 35%);
-
-   --ngx-modern-alert-warning-color-icon: #ea9c00;
-   --ngx-modern-alert-warning-color-text: hsl(25, 50%, 35%);
+/* Default (Light Mode) Variables */
+:root {
+    --ngx-modern-alert-bg-default: rgb(255 255 255 / 80%);
+    --ngx-modern-alert-text-default: rgb(30 30 30);
+    --ngx-modern-alert-info-color-icon: #2196f3;
+    // ... etc.
 }
 
+/* Dark Mode Overrides */
 body.dark {
-   .ngx-modern-alert {
+    .ngx-modern-alert-container {
       --ngx-modern-alert-bg-default: rgb(30 30 30 / 85%);
       --ngx-modern-alert-text-default: rgb(200 200 200);
-      
-      --ngx-modern-alert-info-color-icon: #2196f3;
       --ngx-modern-alert-info-color-text: hsl(220, 50%, 65%);
-      
-      --ngx-modern-alert-success-color-icon: #4caf50;
-      --ngx-modern-alert-success-color-text: hsl(125, 50%, 65%);
-      
-      --ngx-modern-alert-danger-color-icon: #f44336;
-      --ngx-modern-alert-danger-color-text: hsl(0deg 50% 65%);
-      
-      --ngx-modern-alert-warning-color-icon: #ea9c00;
-      --ngx-modern-alert-warning-color-text: hsl(25, 50%, 65%);
-   }
+      // ... etc.
+    }
+    .ngx-modern-alert-hub-container {
+        background: rgba(40, 40, 40, 0.9);
+        color: #eee;
+        border-left-color: #555;
+    }
 }
 ```
+
