@@ -13,6 +13,8 @@ export class NgxModernAlert {
    public message?: string | SafeHtml;
    public notifiedAt: Date = new Date();
    public dismissedAt?: Date;
+   public timedOut?: boolean;
+   public dismissFromHubOnTimeout?: boolean;
    public level?: AlertLevelEnum;
    public svgIcon?: string | SafeHtml;
    public overlayType?: AlertOverlayTypeEnum;

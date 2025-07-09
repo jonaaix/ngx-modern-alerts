@@ -132,14 +132,27 @@ export class NgxModernAlertService implements OnDestroy {
 
    public dismissAlert(alert: NgxModernAlert): void {
       const alertRef = this.alerts.find((a) => a.id === alert.id);
-      if (alertRef) {
-         if (alertRef.timeoutId) {
-            clearTimeout(alertRef.timeoutId);
-         }
-         alertRef.dismissedAt = new Date();
-         this.updateDisplayAlerts();
-         this._saveAlerts();
+      if (!alertRef) {
+         return;
       }
+
+      // The component sets the timedOut flag just before calling dismiss.
+      if (alert.timedOut && !alertRef.dismissFromHubOnTimeout) {
+         // This was a timeout and the alert should remain in the hub.
+         // We mark it as `timedOut` to filter it from the main display layer, but since
+         // `dismissedAt` is not set, it will remain in the hub's list.
+         alertRef.timedOut = true;
+      } else {
+         // This is a manual dismissal, or a timeout that should also clear from the hub.
+         alertRef.dismissedAt = new Date();
+      }
+
+      if (alertRef.timeoutId) {
+         clearTimeout(alertRef.timeoutId);
+      }
+
+      this.updateDisplayAlerts();
+      this._saveAlerts();
    }
 
    public clearAll(): void {
@@ -173,7 +186,7 @@ export class NgxModernAlertService implements OnDestroy {
 
    private updateDisplayAlerts(): void {
       const now = new Date().getTime();
-      const activeAlerts = this.alerts.filter((a) => !a.dismissedAt && !(a.validUntil && a.validUntil.getTime() < now));
+      const activeAlerts = this.alerts.filter((a) => !a.dismissedAt && !a.timedOut && !(a.validUntil && a.validUntil.getTime() < now));
 
       const currentFilter = this.alertFilter.getValue();
       const filteredAlerts = currentFilter

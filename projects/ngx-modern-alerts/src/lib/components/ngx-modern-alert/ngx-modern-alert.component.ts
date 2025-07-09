@@ -153,6 +153,10 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
             this.countdownDisplayNumber = Math.ceil(remainingTime / 1000);
 
             if (remainingTime <= 0) {
+               if (this.alert) {
+                  // Flag that this dismissal is from a timeout for the service to handle.
+                  this.alert.timedOut = true;
+               }
                this.onDismiss();
             }
             this.cdRef.markForCheck();
