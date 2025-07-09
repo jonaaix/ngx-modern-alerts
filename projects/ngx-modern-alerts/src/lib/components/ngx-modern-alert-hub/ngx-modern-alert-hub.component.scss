@@ -1,4 +1,15 @@
 .ngx-modern-alert-hub-container {
+   --ngx-modern-alert-bg-default: rgb(255 255 255 / 80%);
+   --ngx-modern-alert-text-default: rgb(30 30 30);
+   --ngx-modern-alert-info-color-icon: #2196f3;
+   --ngx-modern-alert-info-color-text: hsl(220, 50%, 35%);
+   --ngx-modern-alert-success-color-icon: #4caf50;
+   --ngx-modern-alert-success-color-text: hsl(125, 50%, 35%);
+   --ngx-modern-alert-danger-color-icon: #f44336;
+   --ngx-modern-alert-danger-color-text: hsl(0, 50%, 35%);
+   --ngx-modern-alert-warning-color-icon: #ea9c00;
+   --ngx-modern-alert-warning-color-text: hsl(25, 50%, 35%);
+   
    position: fixed;
    top: 0;
    right: 0;

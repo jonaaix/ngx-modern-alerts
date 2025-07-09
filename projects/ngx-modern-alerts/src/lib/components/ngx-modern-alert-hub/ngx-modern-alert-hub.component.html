@@ -3,7 +3,7 @@
       <h3>Notifications</h3>
       <div>
          <button (click)="clearAll.emit()" class="ngx-modern-alert-hub-clear-all" title="Clear All">Clear All</button>
-         <button (click)="close.emit()" class="ngx-modern-alert-hub-close" title="Close">
+         <button (click)="closed.emit()" class="ngx-modern-alert-hub-close" title="Close">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
          </button>
       </div>
@@ -21,7 +21,7 @@
          </div>
          <div class="ngx-modern-alert-hub-item-content">
             <div class="ngx-modern-alert-hub-item-message" [outerHTML]="alert.message"></div>
-            <div class="ngx-modern-alert-hub-item-date">{{ alert.notifiedAt | date:'shortTime' }}</div>
+            <div class="ngx-modern-alert-hub-item-date">{{ formatDate(alert.notifiedAt) }}</div>
          </div>
          <div class="ngx-modern-alert-hub-item-actions">
             <button (click)="copyMessage(alert, $event)" title="Copy Message" class="ngx-modern-alert-hub-item-action-btn">

@@ -75,7 +75,7 @@ export class NgxModernAlertService implements OnDestroy {
       this.subscriptions.push(
          this.hubComponentRef.instance.dismiss.subscribe(alert => this.dismissAlert(alert)),
          this.hubComponentRef.instance.clearAll.subscribe(() => this.clearAll()),
-         this.hubComponentRef.instance.close.subscribe(() => this.toggleHub(false))
+         this.hubComponentRef.instance.closed.subscribe(() => this.toggleHub(false))
       );
    }
 
