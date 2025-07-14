@@ -240,6 +240,7 @@ export class NgxModernAlertService implements OnDestroy {
          const storableAlerts = this.alerts.slice(0, 50).map(alert => {
             const copy: Partial<NgxModernAlert> = { ...alert };
             delete copy.timeoutId; // Cannot be serialized
+            delete copy.actions; // Cannot be serialized
 
             // Unwrap SafeHtml to a primitive string for serialization
             if (copy.message && typeof copy.message !== 'string') {
