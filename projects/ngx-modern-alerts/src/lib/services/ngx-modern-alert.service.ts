@@ -167,6 +167,13 @@ export class NgxModernAlertService implements OnDestroy {
    }
 
    public showAlert(alert: NgxModernAlert): void {
+      // Check if an active alert with the same ID already exists.
+      const isDuplicate = this.alerts.some(a => a.id === alert.id && !a.dismissedAt && !a.timedOut);
+
+      if (isDuplicate) {
+         return; // Exit the function to prevent adding the duplicate.
+      }
+
       if (typeof alert.message === 'string') {
          alert.message = this.domSanitizer.bypassSecurityTrustHtml(alert.message);
       }
@@ -174,7 +181,6 @@ export class NgxModernAlertService implements OnDestroy {
          alert.svgIcon = this.domSanitizer.bypassSecurityTrustHtml(alert.svgIcon);
       }
 
-      // Set showCopyButton to true for all service-generated alerts, if not set otherwise.
       if (alert.showCopyButton === undefined) {
          alert.showCopyButton = true;
       }
