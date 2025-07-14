@@ -70,7 +70,7 @@
       width: 18px;
       height: 18px;
       fill: #555;
-      
+
       @media (prefers-color-scheme: dark) {
          fill: #bbb;
       }
@@ -91,7 +91,7 @@
    text-align: center;
    padding: 40px;
    color: #999;
-   
+
    @media (prefers-color-scheme: dark) {
       color: #aaa;
    }
@@ -104,9 +104,10 @@
    border-radius: 8px;
    margin-bottom: 8px;
    cursor: pointer;
-   border-left: 4px solid transparent;
+   border: 2px solid transparent;
    transition: background-color 0.2s;
    align-items: flex-start;
+   font-size: 0.875rem;
 
    &:hover {
       background: #f0f0f0;
@@ -114,7 +115,7 @@
 
    @media (prefers-color-scheme: dark) {
       background: #2a2a2a;
-      
+
       &:hover {
          background: #3a3a3a;
       }
@@ -146,7 +147,7 @@
       font-size: 12px;
       color: #999;
       margin-top: 4px;
-      
+
       @media (prefers-color-scheme: dark) {
          color: #aaa;
       }
@@ -169,7 +170,7 @@
          width: 16px;
          height: 16px;
          fill: #555;
-         
+
          @media (prefers-color-scheme: dark) {
             fill: #bbb;
          }
@@ -178,25 +179,25 @@
 }
 
 .ngx-modern-alert-level-info {
-   border-left-color: var(--ngx-modern-alert-info-color-icon);
+   border-color: var(--ngx-modern-alert-info-color-icon);
    .ngx-modern-alert-hub-item-icon svg {
       fill: var(--ngx-modern-alert-info-color-icon);
    }
 }
 .ngx-modern-alert-level-success {
-   border-left-color: var(--ngx-modern-alert-success-color-icon);
+   border-color: var(--ngx-modern-alert-success-color-icon);
    .ngx-modern-alert-hub-item-icon svg {
       fill: var(--ngx-modern-alert-success-color-icon);
    }
 }
 .ngx-modern-alert-level-warning {
-   border-left-color: var(--ngx-modern-alert-warning-color-icon);
+   border-color: var(--ngx-modern-alert-warning-color-icon);
    .ngx-modern-alert-hub-item-icon svg {
       fill: var(--ngx-modern-alert-warning-color-icon);
    }
 }
 .ngx-modern-alert-level-danger {
-   border-left-color: var(--ngx-modern-alert-danger-color-icon);
+   border-color: var(--ngx-modern-alert-danger-color-icon);
    .ngx-modern-alert-hub-item-icon svg {
       fill: var(--ngx-modern-alert-danger-color-icon);
    }
@@ -214,7 +215,7 @@
       width: 18px;
       height: 18px;
       fill: #555;
-      
+
       @media (prefers-color-scheme: dark) {
          fill: #bbb;
       }

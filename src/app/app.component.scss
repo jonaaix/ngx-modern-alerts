@@ -23,4 +23,11 @@
          transition: background-color .3s;
       }
    }
+
+   .static-alerts {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+   }
 }

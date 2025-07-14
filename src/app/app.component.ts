@@ -39,7 +39,7 @@ export class AppComponent implements OnDestroy {
       const alert = new NgxModernAlert('This is a critical error. Please copy the details or report it.');
       alert.level = AlertLevelEnum.Danger;
       alert.overlayType = AlertOverlayTypeEnum.Floating;
-      alert.timeout = 15000;
+      alert.timeout = 150000;
       alert.actions = [
          {
             type: AlertActionTypeEnum.Custom,

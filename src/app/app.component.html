@@ -10,4 +10,13 @@
       <button (click)="filterErrorsOnly()" class="btn">Filter: Errors Only</button>
       <button (click)="clearFilter()" class="btn">Clear Filter</button>
    </div>
+
+   <div class="static-alerts">
+      <h2>Static Examples</h2>
+      <ngx-modern-alert text="This is an information message." level="info"></ngx-modern-alert>
+      <ngx-modern-alert text="This is a success message." level="success" [elevated]="true"></ngx-modern-alert>
+      <ngx-modern-alert text="This is a warning message." level="warning" [showCloseBtn]="true"></ngx-modern-alert>
+      <ngx-modern-alert text="This is an error message." level="danger" [showCopyButton]="true"></ngx-modern-alert>
+      <ngx-modern-alert text="This is a message with no icon." level="info" [hideIcon]="true"></ngx-modern-alert>
+   </div>
 </div>

@@ -58,7 +58,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
    public text?: string;
 
    @Input()
-   public level?: AlertLevelEnum | string;
+   public level?: AlertLevelEnum | 'info' | 'success' | 'warning' | 'danger';
 
    @Input()
    public elevated: boolean = false;

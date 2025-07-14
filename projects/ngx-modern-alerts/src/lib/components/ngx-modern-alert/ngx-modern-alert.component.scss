@@ -12,7 +12,7 @@
 
    display: block;
    margin-bottom: 8px;
-   font-size: 15px;
+   font-size: 0.875rem;
 
    &-container {
       display: flex;
@@ -23,7 +23,7 @@
       box-sizing: border-box;
       pointer-events: all;
       position: relative;
-      border-left: 3px solid transparent;
+      border: 3px solid transparent;
 
       &.elevated {
          box-shadow: 0 10px 15px rgb(0 0 0 / 20%);
@@ -34,43 +34,51 @@
       width: 100%;
       flex-grow: 1;
       display: flex;
-      padding: 12px;
       color: var(--ngx-modern-alert-text-default);
       align-items: flex-start;
    }
 
    &-icon-container {
-      padding: 0 8px 0 0;
       flex-shrink: 0;
-      margin-top: 2px;
    }
 
    &-icon {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       display: flex;
       align-items: center;
       border-radius: 100%;
+      padding: 0.5rem 0 0.5rem 0.5rem;
    }
 
    &-body {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
-      padding-right: 8px;
       align-self: center;
    }
 
    &-message-container {
       word-break: break-word;
-      h1, h2, h3, h4, h5, h6 { margin: 0; }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+         margin: 0;
+      }
+
+      padding: 0.75rem 0;
    }
 
    &-footer {
       display: flex;
       align-items: center;
-      margin-top: 10px;
-      width: 100%;
+      padding-bottom: 0.25rem;
+      padding-right: 0.25rem;
+      padding-left: 0.5rem;
+      margin-top: -0.5rem;
    }
 
    &-footer-spacer {
@@ -86,6 +94,7 @@
       flex-shrink: 0;
       align-self: flex-start;
       height: 100%;
+      padding: 0.125rem;
    }
 
    &-actions {
@@ -95,28 +104,33 @@
    }
 
    &-action-btn {
-      background-color: rgba(100, 100, 100, 0.1);
+      background-color: rgba(100, 100, 100, 0.05);
       border: none;
       border-radius: 4px;
       padding: 4px 8px;
-      margin-left: 8px;
       cursor: pointer;
       font-size: 12px;
       color: inherit;
-      &:hover { background-color: rgba(100, 100, 100, 0.2); }
+      &:hover {
+         background-color: rgba(100, 100, 100, 0.2);
+      }
    }
 
    &-copy-btn {
-      background: transparent;
+      background-color: rgba(100, 100, 100, 0.05);
       border: none;
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       cursor: pointer;
       padding: 6px;
 
-      svg { fill: #808080; }
-      &:hover { background-color: rgba(100, 100, 100, 0.1); }
+      svg {
+         fill: #808080;
+      }
+      &:hover {
+         background-color: rgba(100, 100, 100, 0.1);
+      }
    }
 
    &-feedback {
@@ -132,16 +146,41 @@
    }
 
    &-close-button {
-      width: 100%; height: 100%; border-radius: 100%; padding: 6px;
-      cursor: pointer; box-sizing: border-box; display: flex; align-items: center; justify-content: center;
-      svg { fill: rgb(128, 128, 128); }
-      &:active { opacity: 0.7; background-color: rgb(100 100 100 / 20%); transition: all 100ms ease-in; }
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      padding: 6px;
+      cursor: pointer;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+         fill: rgb(128, 128, 128);
+      }
+      &:active {
+         opacity: 0.7;
+         background-color: rgb(100 100 100 / 20%);
+         transition: all 100ms ease-in;
+      }
    }
 
    &-countdown {
-      position: relative; width: 32px; height: 32px;
-      &-circle { width: 100%; height: 100%; transform: rotate(-90deg); }
-      &-bg { fill: none; stroke: #ddd; stroke-width: 3.8; }
+      position: relative;
+      width: 32px;
+      height: 32px;
+
+      &-circle {
+         width: 100%;
+         height: 100%;
+         transform: rotate(-90deg);
+      }
+      &-bg {
+         fill: none;
+         stroke: #ddd;
+         stroke-width: 3.8;
+      }
       &-progress {
          fill: none;
          stroke-width: 3.2;
@@ -151,39 +190,78 @@
          transition: stroke-dashoffset 0.05s linear;
       }
       &-number {
-         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-         display: flex; align-items: center; justify-content: center; font-size: 12px;
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 12px;
       }
    }
 
    &-level {
       &-info {
-         border-left-color: var(--ngx-modern-alert-info-color-icon);
-         .ngx-modern-alert-body { color: var(--ngx-modern-alert-info-color-text); }
-         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-info-color-icon); }
-         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-info-color-icon); }
-         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-info-color-text); }
+         border-color: var(--ngx-modern-alert-info-color-icon);
+         .ngx-modern-alert-body {
+            color: var(--ngx-modern-alert-info-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-info-color-icon);
+         }
+         .ngx-modern-alert-countdown-progress {
+            stroke: var(--ngx-modern-alert-info-color-icon);
+         }
+         .ngx-modern-alert-countdown-number {
+            color: var(--ngx-modern-alert-info-color-text);
+         }
       }
       &-success {
-         border-left-color: var(--ngx-modern-alert-success-color-icon);
-         .ngx-modern-alert-body { color: var(--ngx-modern-alert-success-color-text); }
-         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-success-color-icon); }
-         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-success-color-icon); }
-         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-success-color-text); }
+         border-color: var(--ngx-modern-alert-success-color-icon);
+         .ngx-modern-alert-body {
+            color: var(--ngx-modern-alert-success-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-success-color-icon);
+         }
+         .ngx-modern-alert-countdown-progress {
+            stroke: var(--ngx-modern-alert-success-color-icon);
+         }
+         .ngx-modern-alert-countdown-number {
+            color: var(--ngx-modern-alert-success-color-text);
+         }
       }
       &-danger {
-         border-left-color: var(--ngx-modern-alert-danger-color-icon);
-         .ngx-modern-alert-body { color: var(--ngx-modern-alert-danger-color-text); }
-         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-danger-color-icon); }
-         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-danger-color-icon); }
-         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-danger-color-text); }
+         border-color: var(--ngx-modern-alert-danger-color-icon);
+         .ngx-modern-alert-body {
+            color: var(--ngx-modern-alert-danger-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-danger-color-icon);
+         }
+         .ngx-modern-alert-countdown-progress {
+            stroke: var(--ngx-modern-alert-danger-color-icon);
+         }
+         .ngx-modern-alert-countdown-number {
+            color: var(--ngx-modern-alert-danger-color-text);
+         }
       }
       &-warning {
-         border-left-color: var(--ngx-modern-alert-warning-color-icon);
-         .ngx-modern-alert-body { color: var(--ngx-modern-alert-warning-color-text); }
-         .ngx-modern-alert-icon svg { fill: var(--ngx-modern-alert-warning-color-icon); }
-         .ngx-modern-alert-countdown-progress { stroke: var(--ngx-modern-alert-warning-color-icon); }
-         .ngx-modern-alert-countdown-number { color: var(--ngx-modern-alert-warning-color-text); }
+         border-color: var(--ngx-modern-alert-warning-color-icon);
+         .ngx-modern-alert-body {
+            color: var(--ngx-modern-alert-warning-color-text);
+         }
+         .ngx-modern-alert-icon svg {
+            fill: var(--ngx-modern-alert-warning-color-icon);
+         }
+         .ngx-modern-alert-countdown-progress {
+            stroke: var(--ngx-modern-alert-warning-color-icon);
+         }
+         .ngx-modern-alert-countdown-number {
+            color: var(--ngx-modern-alert-warning-color-text);
+         }
       }
    }
 }
