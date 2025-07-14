@@ -278,6 +278,10 @@ export class NgxModernAlertService implements OnDestroy {
                if (a.notifiedAt) alert.notifiedAt = new Date(a.notifiedAt);
                if (a.dismissedAt) alert.dismissedAt = new Date(a.dismissedAt);
                if (a.validUntil) alert.validUntil = new Date(a.validUntil);
+
+               // Mark all loaded alerts as timedOut so they don't reappear
+               alert.timedOut = true;
+
                return alert;
             });
             this.updateDisplayAlerts();
