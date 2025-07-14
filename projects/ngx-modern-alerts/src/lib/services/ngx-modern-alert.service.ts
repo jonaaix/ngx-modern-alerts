@@ -24,7 +24,7 @@ export class NgxModernAlertService implements OnDestroy {
 
    private alertFilter = new BehaviorSubject<AlertLevelEnum[] | null>(null);
 
-   public maxMessages: number = 5;
+   public maxMessages: number = 9999;
    public timeoutMs: number = 5000;
    public xPosition: 'right' | 'left' = 'right';
    public yPosition: 'top' | 'bottom' = 'top';
