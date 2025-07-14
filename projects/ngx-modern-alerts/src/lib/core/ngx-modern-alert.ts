@@ -22,6 +22,7 @@ export class NgxModernAlert {
 
    // New Properties
    public timeout?: number; // Duration in ms
+   public disableTimeout?: boolean;
    public timeoutId?: number;
    public actions?: NgxModernAlertAction[];
    public feedbackText?: string | null = null;

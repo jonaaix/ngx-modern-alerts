@@ -22,8 +22,8 @@
             </div>
 
             <div class="ngx-modern-alert-controls">
-               <div class="ngx-modern-alert-close-container" *ngIf="showCloseBtn || alert.timeout">
-                  <div class="ngx-modern-alert-countdown" *ngIf="alert.timeout && !isHovered">
+               <div class="ngx-modern-alert-close-container" *ngIf="showCloseBtn || alert.timeout || alert.disableTimeout">
+                  <div class="ngx-modern-alert-countdown" *ngIf="alert.timeout && !isHovered && !alert.disableTimeout">
                      <svg viewBox="0 0 36 36" class="ngx-modern-alert-countdown-circle">
                         <path
                            class="ngx-modern-alert-countdown-bg"
@@ -39,7 +39,7 @@
 
                   <div
                      class="ngx-modern-alert-close-button"
-                     *ngIf="showCloseBtn && (!alert.timeout || isHovered)"
+                     *ngIf="(showCloseBtn && (!alert.timeout || isHovered)) || alert.disableTimeout"
                      (click)="onDismiss()">
                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path

@@ -58,7 +58,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
    public text?: string;
 
    @Input()
-   public level?: AlertLevelEnum | 'info' | 'success' | 'warning' | 'danger';
+   public level?: AlertLevelEnum | string;
 
    @Input()
    public elevated: boolean = false;
@@ -140,7 +140,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
          this.iconPath = undefined;
       }
 
-      if (this.alert.timeout && this.alert.timeout > 0) {
+      if (this.alert.timeout && this.alert.timeout > 0 && !this.alert.disableTimeout) {
          const startTime = Date.now();
          const totalDuration = this.alert.timeout;
          this.countdownDisplayNumber = Math.ceil(totalDuration / 1000);
