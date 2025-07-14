@@ -58,7 +58,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
    public text?: string;
 
    @Input()
-   public level?: AlertLevelEnum | string;
+   public level?: AlertLevelEnum | 'info' | 'success' | 'warning' | 'danger';
 
    @Input()
    public elevated: boolean = false;
@@ -122,8 +122,6 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
    }
 
    private setupAlert(): void {
-      clearInterval(this.dismissIntervalId);
-
       if (!this.alert) {
          this.alert = new NgxModernAlert(this.text ? this.domSanitizer.bypassSecurityTrustHtml(this.text) : '');
       }
@@ -140,7 +138,7 @@ export class NgxModernAlertComponent implements OnInit, OnChanges, OnDestroy {
          this.iconPath = undefined;
       }
 
-      if (this.alert.timeout && this.alert.timeout > 0 && !this.alert.disableTimeout) {
+      if (this.alert.timeout && this.alert.timeout > 0 && !this.alert.disableTimeout && !this.dismissIntervalId) {
          const startTime = Date.now();
          const totalDuration = this.alert.timeout;
          this.countdownDisplayNumber = Math.ceil(totalDuration / 1000);
